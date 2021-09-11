@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Separador de espacio horizontal */
+.spacer {
+    flex: 1 1 auto;
+}
+
+.spacer2{
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.one {
+    flex: 1 1 50%;
+}
+.two {
+    flex: 1 1 25% !important;
+  }
+
+.adaptable{
+    height: auto !important;
+}

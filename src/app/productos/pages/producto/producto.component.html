@@ -1,0 +1,57 @@
+<mat-grid-list cols="1" *ngIf="!producto; else divProducto">
+   
+        Producto no encontrado, vuelva al menú.
+   
+</mat-grid-list>
+
+<ng-template #divProducto>
+    <div fxLayout="row"
+         fxLayout.xs="column"
+         fxLayoutGap="30px">
+
+         <div fxFlex="50">
+             <h1>{{producto.nombre}}</h1>
+             <mat-divider></mat-divider>
+             <br>
+             <img [src]="producto | imagen">
+         </div>
+
+         <div fxFlex="50">
+             <h2>{{producto.categoria}}</h2>
+             <mat-divider></mat-divider>
+
+             <mat-list>
+                 <mat-list-item class="adaptable">
+                     <p>
+
+                         <strong >Presentación: </strong> {{producto.presentacion}}
+
+                     </p>
+                 </mat-list-item>
+                 <br>
+                 <mat-list-item class="adaptable">
+                     <p>
+                         <strong> Descripción: </strong> {{producto.descripcion}}
+                     </p>
+                </mat-list-item>
+                 <br>
+                 <mat-list-item class="adaptable">
+                     <p>
+                         <strong>Precio: </strong> {{producto.precio}} {{producto.moneda}}
+                     </p>
+                 </mat-list-item>
+                 <!-- <mat-list-item *ngIf="producto.disponible">Disponible: Si</mat-list-item>
+                 <mat-list-item *ngIf="producto.disponible==false">Disponible: No</mat-list-item> -->
+             </mat-list>
+
+             <br>
+            <button mat-button 
+                    color="warn"
+                    (click)="regresar()">
+                Regresar
+            </button>
+         </div>
+
+    </div>
+</ng-template>
+

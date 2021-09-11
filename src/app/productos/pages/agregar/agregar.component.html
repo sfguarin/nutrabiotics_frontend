@@ -1,0 +1,121 @@
+<h1>
+    {{ ( producto._id )? 'Editar' : 'Nuevo' }}
+    producto 
+    <small>{{producto.nombre}}</small>
+</h1>
+
+<div fxLayout="row" 
+     fxLayoutGap="40px"
+     fxLayout.xs="column">
+
+    <!-- Campos para agregar un nuevo producto  -->
+    <div fxFlex="50" fxLayout="column">
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Nombre del producto</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="producto.nombre"
+                   required>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Categoría</mat-label>
+            <mat-select [(ngModel)]="producto.categoria"
+                        required>
+                <mat-option *ngFor="let categoria of categorias"
+                            [value]="categoria.desc">
+                        {{categoria.desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Presentación del producto (Ej. Frasco por 90 cápsulas)</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="producto.presentacion"
+                   required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="producto.descripcion"
+                   required>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+            <mat-label>Descripción</mat-label>
+            <input matInput
+                   type="text">
+        </mat-form-field> -->
+
+        <!-- <div fxLayout="row" 
+             fxLayout.xs="column" 
+             fxLayoutGap="20px"> -->
+
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Precio</mat-label>
+                <input matInput
+                       type="number"
+                       [(ngModel)]="producto.precio"
+                       required>
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="100" fxLayout.xs="column">
+                <mat-label>Moneda</mat-label>
+                <mat-select [(ngModel)]="producto.moneda"
+                            required>
+                    <mat-option *ngFor="let moneda of monedas"
+                                [value]="moneda.desc">
+                            {{moneda.desc}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+        <!-- </div> -->
+
+        <mat-form-field>
+            <mat-label>Foto Url</mat-label>
+            <input matInput
+                   type="url"
+                   [(ngModel)]="producto.img"
+                   required>
+        </mat-form-field>
+
+        <br>
+
+        <div fxLayout>
+
+            <button mat-raised-button 
+                    color="primary"
+                    (click)="guardar()">
+                <mat-icon>edit</mat-icon>
+                {{ ( producto._id )? 'Actualizar' : 'Crear' }}
+                
+            </button>
+
+            <!-- Tomar todo el espacio disponible -->
+            <span class="spacer"></span>
+
+            <button *ngIf="producto._id"
+                    mat-raised-button
+                    (click)="borrarProducto()"
+                    color="warn">
+                <mat-icon>delete</mat-icon>
+                Borrar
+            </button>
+        </div>
+
+    </div>
+
+    <!-- vista de imagen tempotal -->
+    <div fxFlex="100"
+         fxLayoutAlign="center"
+         fxLayoutGap="20px">
+        <img [src]="producto | imagen" width="400" height="400" [hspace]="40">
+    </div>
+
+</div>

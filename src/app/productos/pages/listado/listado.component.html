@@ -1,0 +1,45 @@
+<!-- Listado de productos -->
+<div fxLayout>
+    <div class="spacer2">
+        <h1 class="one">
+            Listado de productos
+        </h1>
+         <mat-form-field fxFlex="100" fxLayout.xs="column" class="two">
+            <mat-label>Número de elementos a mostrar</mat-label>
+            <!-- <mat-select [(ngModel)]="producto.moneda"
+                        required> -->
+            <mat-select [(ngModel)]="opcionSeleccionado"
+                        (selectionChange)="cambio()">
+                <mat-option value="10">Selecciona una opcion</mat-option>
+                <mat-option *ngFor="let dato of datos"
+                            [value]="dato.desc">
+                        {{dato.desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>
+<mat-divider></mat-divider>
+<br>
+
+<!-- Para organizar en columnas -->
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="20px">
+
+    <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         *ngFor="let producto of productos">
+
+
+
+        <app-producto-tarjeta [producto]="producto"></app-producto-tarjeta>
+
+    </div>
+
+    
+</div>
+
